@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "test-one"
+    }
+  },
+  "defaultProject": "test-one",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
