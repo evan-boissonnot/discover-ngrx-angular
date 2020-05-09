@@ -24,3 +24,5 @@ export const metaReducers: MetaReducer<State>[] = !environment.production ? [] :
 
 export const selectWookies = (state: State) => state.wookies;
 
+export const getWookies = createSelector(selectWookies, (state) => state.entities);
+

@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import * as fromStore from '../store/reducers';
 import { Observable } from 'rxjs';
 import { Wookie } from '../core/models/wookie';
+import { WookiesActionsType } from '../store/actions/wookie.actions';
 
 @Component({
   selector: 'app-wookies',
@@ -16,7 +17,8 @@ export class WookiesComponent implements OnInit {
   constructor(private store: Store<fromStore.State>) { }
 
   ngOnInit(): void {
-    this.wookies$ = this.store.select( state => state.wookies.entities);
+   this.store.dispatch({type: WookiesActionsType.load});
+   this.wookies$ = this.store.pipe(select(fromStore.getWookies));
   }
 
 }
