@@ -14,10 +14,11 @@ export class WookiesComponent implements OnInit {
   wookies$: Observable<Wookie[]>;
 
 
-  constructor(private store: Store<fromStore.State>) { }
+  constructor(private store: Store<fromStore.State>) {
+    this.store.dispatch({type: WookiesActionsType.load});
+  }
 
   ngOnInit(): void {
-   this.store.dispatch({type: WookiesActionsType.load});
    this.wookies$ = this.store.pipe(select(fromStore.getWookies));
   }
 

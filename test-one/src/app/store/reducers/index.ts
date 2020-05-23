@@ -10,7 +10,6 @@ import * as fromWookies from './wookies.reducer';
 
 
 export interface State {
-
   wookies: fromWookies.State;
 }
 
