@@ -16,7 +16,18 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
   on(WookiesActions.loadWookies, state => ({...state})),
-  on(WookiesActions.loadWookiesSuccess, (state, { data }) => ( { ids: data.map(item => item.id), entities: data } ))
+  on(WookiesActions.addWookie, state => ({...state})),
+  on(WookiesActions.loadWookiesSuccess, (state, { wookies }) => ( { ids: wookies.map(item => item.id), entities: wookies } )),
+  on(WookiesActions.addWookieSuccess, (state, { wookie }) => {
+    const newState = {...state};
+    newState.entities = [...state.entities];
+    newState.entities.push(wookie);
+
+    return {
+      ids: newState.entities.map(item => item.id),
+      entities: newState.entities
+    };
+  })
 );
 
 
